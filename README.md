@@ -43,3 +43,43 @@ To use them, `IAppHost app` is provided by the host in the `Run()` lambda functi
         });
     }
   ```
+
+### Using a Startup class
+Implement interface `IStartup` from `Vhc.CoreUi.Abstractions` from your startup class, and register the startup class in `AppHostBuilder` instance.
+
+_Startup.cs_
+```c#
+    class Startup : IStartup
+    {
+        // Register the configuration files
+        public void Configure(IConfigurationBuilder config)
+        {
+            config.AddJsonFile("appsettings.json", optional: true);
+        }
+        
+        // Register services for dependancy injection
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddTransient<Foo>();
+        }
+    
+        // Start point of the application, this is called by Run() method of the application host
+        public void Start(IAppHost app)
+        {
+            var foo = app.Services.GetService<Foo>();
+            Console.WriteLine(foo.ToString());
+        }
+    }
+  ```
+  
+_Program.cs_
+```c#
+    static void Main(string[] args)
+    {
+        new AppHostBuilder()
+            .UseStartup<Startup>()
+            .Build()
+            .Run();
+    }
+  ```
+
