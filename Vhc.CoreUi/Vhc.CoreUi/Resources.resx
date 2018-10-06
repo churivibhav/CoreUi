@@ -123,4 +123,7 @@
   <data name="AppHostBuilder_StartupNotAssignable" xml:space="preserve">
     <value>Startup class is not assignable to IStartup.</value>
   </data>
+  <data name="AppHost_EntryActionNotDefined" xml:space="preserve">
+    <value>Application Entry Point or Action is not defined.</value>
+  </data>
 </root>

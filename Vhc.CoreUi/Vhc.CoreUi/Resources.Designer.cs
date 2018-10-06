@@ -61,6 +61,15 @@ namespace Vhc.CoreUi {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Application Entry Point or Action is not defined..
+        /// </summary>
+        internal static string AppHost_EntryActionNotDefined {
+            get {
+                return ResourceManager.GetString("AppHost_EntryActionNotDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to AppHostBuilder allows creation only of a single instance of AppHost..
         /// </summary>
         internal static string AppHostBuilder_SingleInstance {

@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Vhc.CoreUi.Abstractions", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{D1B5135F-EA49-4FD5-932A-09FA3C07C0DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleHostSample", "Samples\ConsoleHostSample\ConsoleHostSample.csproj", "{8E86E624-8F6C-433C-A22F-3E0193A8DCEC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,9 +25,16 @@ Global
 		{1042B845-5605-4C0C-A1A7-AC3CFBBF55AC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1042B845-5605-4C0C-A1A7-AC3CFBBF55AC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1042B845-5605-4C0C-A1A7-AC3CFBBF55AC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E86E624-8F6C-433C-A22F-3E0193A8DCEC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E86E624-8F6C-433C-A22F-3E0193A8DCEC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E86E624-8F6C-433C-A22F-3E0193A8DCEC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E86E624-8F6C-433C-A22F-3E0193A8DCEC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{8E86E624-8F6C-433C-A22F-3E0193A8DCEC} = {D1B5135F-EA49-4FD5-932A-09FA3C07C0DD}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4FB80FA4-08FA-46DD-AD06-1BF1C32B06E8}

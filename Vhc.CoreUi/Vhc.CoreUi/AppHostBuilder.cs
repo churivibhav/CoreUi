@@ -14,6 +14,7 @@ namespace Vhc.CoreUi
         private IConfiguration _config;
         private readonly List<Action<IServiceCollection>> _configureServiceDelegates;
         private readonly List<Action<IServiceCollection>> _configureHostDelegates;
+        private ICollection<string> _arguments;
 
         public AppHostBuilder()
         {
@@ -34,7 +35,7 @@ namespace Vhc.CoreUi
             IServiceCollection hostingServices = BuildServices(_configureHostDelegates);
 
             IServiceProvider hostingProvider = GetProviderFromFactory(hostingServices);
-            var host = new AppHost(services, hostingProvider, _config);
+            var host = new AppHost(services, hostingProvider, _config, _arguments);
             try
             {
                 host.Initialize();
@@ -98,6 +99,18 @@ namespace Vhc.CoreUi
             return this;
         }
 
+        public IAppHostBuilder WithArguments(string[] args)
+        {
+            if (_arguments is null)
+            {
+                _arguments = new List<string>();
+            }
+            foreach (var argument in args)
+            {
+                _arguments.Add(argument);
+            }
+            return this;
+        }
 
         public string GetSetting(string key) => _config[key];
 

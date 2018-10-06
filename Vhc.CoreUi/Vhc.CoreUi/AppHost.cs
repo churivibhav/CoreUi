@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
+using System.Collections.Generic;
 using Vhc.CoreUi.Abstractions;
 
 namespace Vhc.CoreUi
@@ -19,20 +20,24 @@ namespace Vhc.CoreUi
 
         private bool _isRunning;
 
-        public AppHost(IServiceCollection appServices, IServiceProvider hostingProvider, IConfiguration configuration)
+        private readonly ICollection<string> _arguments;
+
+        public AppHost(IServiceCollection appServices, IServiceProvider hostingProvider, IConfiguration configuration, ICollection<string> arguments)
         {
             if (configuration == null)
             {
                 throw new ArgumentNullException(nameof(configuration));
             }
             _configurationBuilder = new ConfigurationBuilder().AddConfiguration(configuration);
-
+            _arguments = arguments;
             _hostingProvider = hostingProvider ?? throw new ArgumentNullException(nameof(hostingProvider));
             _applicationServiceCollection = appServices ?? throw new ArgumentNullException(nameof(appServices));
             _isRunning = false;
         }
 
         public IServiceProvider Services => _appServices;
+
+        public ICollection<string> Arguments => _arguments;
 
         internal void Initialize()
         {
@@ -43,17 +48,21 @@ namespace Vhc.CoreUi
             {
                 startup.ConfigureServices(_applicationServiceCollection);
                 startup.Configure(_configurationBuilder);
+                _entryPoint = startup.Start;
             }
             _config = _configurationBuilder.Build();
             _applicationServiceCollection.AddSingleton<IConfiguration>(_config);
             _appServices = _applicationServiceCollection.BuildServiceProvider();
-            _entryPoint = startup.Start;
         }
 
         public void Run() => Run(_entryPoint);
 
         public void Run(Action<IAppHost> action)
         {
+            if (action is null)
+            {
+                throw new ArgumentNullException(Resources.AppHost_EntryActionNotDefined);
+            }
             if (!_isRunning)
             {
                 action?.Invoke(this);
