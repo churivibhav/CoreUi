@@ -83,3 +83,13 @@ _Program.cs_
     }
   ```
 
+As the ASP.NET Core ServiceCollection used in `ConfigureServices`, you can use any suitable library here.
+For example, Sqlite can be used alongwith Entity Framework Core.
+
+```c# 
+public void ConfigureServices(IServiceCollection services)
+    {
+        services.AddDbContext<MyDbContext>(options =>
+            options.UseSqlite(Constants.ConnectionString));
+        ...
+    }
