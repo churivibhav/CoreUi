@@ -12,7 +12,7 @@ namespace Vhc.CoreUi.Abstractions
         /// <summary>
         /// The starting point of the Windows Application
         /// </summary>
-        /// <param name="app"></param>
+        /// <param name="app">Application Host</param>
         void Start(IAppHost app);
     }
 }

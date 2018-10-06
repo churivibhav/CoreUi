@@ -5,7 +5,7 @@ using Vhc.CoreUi.Abstractions;
 
 namespace Vhc.CoreUi
 {
-    public class AppHost : IAppHost, IDependancyResolver
+    class AppHost : IAppHost, IDependancyResolver
     {
         private IServiceProvider _appServices;
         private readonly IServiceCollection _applicationServiceCollection;
