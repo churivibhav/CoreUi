@@ -1,0 +1,20 @@
+<package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
+  <metadata>
+    <id>Vhc.CoreUi.Desktop</id>
+    <version>0.0.2</version>
+    <authors>Vibhav Churi</authors>
+    <owners>Vibhav Churi</owners>
+    <projectUrl>https://github.com/churivibhav/CoreUi</projectUrl>
+    <iconUrl>https://www.dropbox.com/s/v9tyudqeos3g66r/favicon.ico?dl=0</iconUrl>
+    <description>Application builder library for .NET Framework Windows Forms and Console Applications, inspired by .NET Core</description>
+    <tags>Windows, Forms, Console, Framework, .NET, Dependancy Injection, Configuration</tags>
+    <dependencies>
+      <group targetFramework="netstandard2.0">
+		<dependency id="Vhc.CoreUi" version="0.0.2" />
+        <dependency id="Microsoft.Extensions.Configuration" version="2.1.0" />
+        <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.0" />
+        <dependency id="Microsoft.Extensions.Logging" version="2.1.0" />
+      </group>
+    </dependencies>
+  </metadata>
+</package>

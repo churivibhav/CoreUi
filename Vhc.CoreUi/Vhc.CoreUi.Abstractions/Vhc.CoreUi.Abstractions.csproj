@@ -4,6 +4,11 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Vibhav Churi</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1</Version>
+    <Description>Interfaces used in Vhc.CoreUi, an application builder library for .NET Framework Windows Forms and Console Applications, inspired by .NET Core</Description>
+    <PackageProjectUrl>https://github.com/churivibhav/CoreUi</PackageProjectUrl>
+    <PackageIconUrl></PackageIconUrl>
+    <RepositoryUrl>https://github.com/churivibhav/CoreUi</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

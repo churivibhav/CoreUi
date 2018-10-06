@@ -99,7 +99,7 @@ namespace Vhc.CoreUi
             return this;
         }
 
-        public IAppHostBuilder WithArguments(string[] args)
+        public IAppHostBuilder UseArguments(IEnumerable<string> args)
         {
             if (_arguments is null)
             {
