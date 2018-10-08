@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Vhc.CoreUi.Abstractions;
 
 namespace Vhc.CoreUi
@@ -70,6 +71,20 @@ namespace Vhc.CoreUi
             }
         }
 
+
+        public async Task RunAsync(Func<IAppHost, Task> asyncFunction)
+        {
+            if (asyncFunction is null)
+            {
+                throw new ArgumentNullException(Resources.AppHost_EntryActionNotDefined);
+            }
+            if (!_isRunning)
+            {
+                await asyncFunction(this);
+                _isRunning = true;
+            }
+        }
+
         public void Dispose()
         {
             if (_isRunning)
@@ -87,5 +102,6 @@ namespace Vhc.CoreUi
             _isRunning = false;
             // TODO : Stop
         }
+
     }
 }

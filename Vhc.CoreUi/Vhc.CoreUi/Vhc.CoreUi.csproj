@@ -5,7 +5,7 @@
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <Authors>Vibhav Churi</Authors>
     <Company>Vibhav Churi</Company>
-    <Version>0.0.2</Version>
+    <Version>0.0.3</Version>
     <Description>Application builder library for .NET Framework Windows Forms and Console Applications, inspired by .NET Core</Description>
     <PackageProjectUrl>https://github.com/churivibhav/CoreUi</PackageProjectUrl>
     <RepositoryUrl>https://github.com/churivibhav/CoreUi</RepositoryUrl>
