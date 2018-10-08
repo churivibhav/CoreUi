@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Vhc.CoreUi.Abstractions
@@ -10,6 +11,6 @@ namespace Vhc.CoreUi.Abstractions
         IServiceProvider Services { get; }
         void Run();
         void Run(Action<IAppHost> action);
-        Task RunAsync(Func<IAppHost, Task> asyncFunction);
+        Task RunAsync(Func<IAppHost, CancellationToken, Task> asyncFunction);
     }
 }

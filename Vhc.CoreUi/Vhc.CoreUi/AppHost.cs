@@ -2,6 +2,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
+using System.Threading;
 using System.Threading.Tasks;
 using Vhc.CoreUi.Abstractions;
 
@@ -20,6 +21,8 @@ namespace Vhc.CoreUi
         private Action<IAppHost> _entryPoint;
 
         private bool _isRunning;
+
+        private CancellationTokenSource cancellationTokenSource;
 
         private readonly ICollection<string> _arguments;
 
@@ -72,7 +75,7 @@ namespace Vhc.CoreUi
         }
 
 
-        public async Task RunAsync(Func<IAppHost, Task> asyncFunction)
+        public async Task RunAsync(Func<IAppHost, CancellationToken, Task> asyncFunction)
         {
             if (asyncFunction is null)
             {
@@ -80,7 +83,8 @@ namespace Vhc.CoreUi
             }
             if (!_isRunning)
             {
-                await asyncFunction(this);
+                cancellationTokenSource = new CancellationTokenSource();
+                Task task = asyncFunction(this, cancellationTokenSource.Token);
                 _isRunning = true;
             }
         }
@@ -100,7 +104,7 @@ namespace Vhc.CoreUi
         {
             if (_isRunning) return;
             _isRunning = false;
-            // TODO : Stop
+            cancellationTokenSource.Cancel();
         }
 
     }

@@ -10,7 +10,11 @@ namespace NetCoreConsoleHostSample
         {
             new AppHostBuilder()
                 .Build()
-                .RunAsync(async (app) => await Task.Run(() => Console.WriteLine("aaa")))
+                .RunAsync(async (app, token) =>
+                {
+                    if(!token.IsCancellationRequested)
+                        await Task.Run(() => Console.WriteLine("aaa"));
+                })
                 .GetAwaiter()
                 .GetResult();
             Console.ReadKey();
