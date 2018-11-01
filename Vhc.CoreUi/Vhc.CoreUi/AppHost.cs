@@ -48,14 +48,20 @@ namespace Vhc.CoreUi
             _applicationServiceCollection.AddSingleton<IDependancyResolver>(this);
 
             var startup = _hostingProvider.GetService<IStartup>();
+            // Build configuration
             if (startup != null)
             {
-                startup.ConfigureServices(_applicationServiceCollection);
                 startup.Configure(_configurationBuilder);
-                _entryPoint = startup.Start;
             }
             _config = _configurationBuilder.Build();
-            _applicationServiceCollection.AddSingleton<IConfiguration>(_config);
+            
+            // Build services
+            if (startup != null)
+            {
+                _applicationServiceCollection.AddSingleton<IConfiguration>(_config);
+                startup.ConfigureServices(_applicationServiceCollection, _config);
+                _entryPoint = startup.Start;
+            }
             _appServices = _applicationServiceCollection.BuildServiceProvider();
         }
 
@@ -84,7 +90,7 @@ namespace Vhc.CoreUi
             if (!_isRunning)
             {
                 cancellationTokenSource = new CancellationTokenSource();
-                Task task = asyncFunction(this, cancellationTokenSource.Token);
+                await asyncFunction(this, cancellationTokenSource.Token);
                 _isRunning = true;
             }
         }

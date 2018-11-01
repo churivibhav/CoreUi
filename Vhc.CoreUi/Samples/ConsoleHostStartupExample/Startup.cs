@@ -17,11 +17,10 @@ namespace ConsoleHostStartupExample
             config.AddJsonFile("appsettings.json", optional: true);
         }
 
-        public void ConfigureServices(IServiceCollection services)
+        public void ConfigureServices(IServiceCollection services, IConfiguration config)
         {
+            var connStr = config.GetConnectionString("DefaultConnection");
             services.AddTransient<Foo>();
-            services.AddDbContext<MyDbContext>(options =>
-                options.UseSqlite(Constants.ConnectionString));
         }
 
         public void Start(IAppHost app)

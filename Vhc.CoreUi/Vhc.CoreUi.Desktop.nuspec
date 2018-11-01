@@ -1,7 +1,7 @@
 <package xmlns="http://schemas.microsoft.com/packaging/2012/06/nuspec.xsd">
   <metadata>
     <id>Vhc.CoreUi.Desktop</id>
-    <version>0.0.2</version>
+    <version>0.0.4</version>
     <authors>Vibhav Churi</authors>
     <owners>Vibhav Churi</owners>
     <projectUrl>https://github.com/churivibhav/CoreUi</projectUrl>
@@ -10,7 +10,7 @@
     <tags>Windows, Forms, Console, Framework, .NET, Dependancy Injection, Configuration</tags>
     <dependencies>
       <group targetFramework="netstandard2.0">
-		<dependency id="Vhc.CoreUi" version="0.0.2" />
+		<dependency id="Vhc.CoreUi" version="0.0.4" />
         <dependency id="Microsoft.Extensions.Configuration" version="2.1.0" />
         <dependency id="Microsoft.Extensions.DependencyInjection" version="2.1.0" />
         <dependency id="Microsoft.Extensions.Logging" version="2.1.0" />
