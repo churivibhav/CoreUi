@@ -10,11 +10,11 @@ namespace Vhc.CoreUi
 {
     public class AppHostBuilder : IAppHostBuilder
     {
-        private bool _isAppHostBuilt;
-        private IConfiguration _config;
+        protected bool _isAppHostBuilt;
+        protected IConfiguration _config;
         private readonly List<Action<IServiceCollection>> _configureServiceDelegates;
         private readonly List<Action<IServiceCollection>> _configureHostDelegates;
-        private ICollection<string> _arguments;
+        protected ICollection<string> _arguments;
 
         public AppHostBuilder()
         {
@@ -24,7 +24,9 @@ namespace Vhc.CoreUi
             _configureHostDelegates = new List<Action<IServiceCollection>>();
         }
 
-        public IAppHost Build()
+        public virtual IAppHost Build() => Build((services, hostingProvider) => new AppHost(services, hostingProvider, _config, _arguments));
+
+        public IAppHost Build(Func<IServiceCollection, IServiceProvider, AppHost> hostCreatorFunction)
         {
             if (_isAppHostBuilt)
             {
@@ -35,7 +37,7 @@ namespace Vhc.CoreUi
             IServiceCollection hostingServices = BuildServices(_configureHostDelegates);
 
             IServiceProvider hostingProvider = GetProviderFromFactory(hostingServices);
-            var host = new AppHost(services, hostingProvider, _config, _arguments);
+            var host = hostCreatorFunction(services, hostingProvider); 
             try
             {
                 host.Initialize();
